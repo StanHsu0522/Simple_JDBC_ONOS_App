@@ -92,3 +92,27 @@ The following steps show how to create bundle for 3rd party dependency:
             com.mysql.cj.jdbc;version="[8.0,9)",          # the package specified at last step
             org.slf4j;version="[1.7,2)"
     ```
+   
+
+## Class Loader
+
+```java
+try {
+    Class.forName("com.mysql.jdbc.Driver");
+}
+catch(ClassNotFoundException e) {
+    System.out.println("Can not find the driver!");
+}
+```
+
+> With ONOS being housed in an OSGi framework/container, it is important to remember that there are multitudes of class-loaders involved.
+[Ref.](https://groups.google.com/a/onosproject.org/g/onos-dev/c/ft8schbe74g/m/PyEtaVV6CwAJ)
+
+This will throw `ClassNotFoundException` because the current class loader couldn't find the specified driver class.  
+
+
+So I new a nameless object. In this way, it can properly register driver in the class static clause.
+```java
+ // Nameless object for executing class static clause. (MySQL Connector/J JDBC driver)
+new Driver();
+```
