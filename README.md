@@ -2,6 +2,12 @@
 
 This is a simple example ONOS App for connecting to external database (e.g. MySQL).
 
+### Prerequisite
+
+* MySQL database
+* ONOS v2.5.1
+* JDK 11
+* Bazel v3.7.2
 
 ## MySQL Connector/J
 
